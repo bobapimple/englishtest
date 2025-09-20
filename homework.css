@@ -1,0 +1,246 @@
+:root {
+    --primary-color: #7c5cff;
+    --secondary-color: #28c76f;
+    --danger-color: #ff6b6b;
+    --warning-color: #f59e0b;
+    --bg-gradient: linear-gradient(135deg, #8ec5ff 0%, #e0c3fc 100%);
+    --card-bg: rgba(255,255,255,0.9);
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+}
+
+[data-theme="dark"] {
+    --bg-gradient: linear-gradient(135deg, #1a2a4a 0%, #3a1a4a 100%);
+    --card-bg: rgba(30,30,40,0.95);
+    --text-primary: #f0f0f0;
+    --text-secondary: #cbd5e1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-primary);
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    transition: background 0.3s ease;
+}
+
+.app {
+    width: 100%;
+    max-width: 960px;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(6px);
+    padding: 36px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(20,20,60,0.12);
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    color: var(--text-primary);
+}
+
+p {
+    margin: 0 0 18px;
+    color: var(--text-secondary);
+}
+
+.btn {
+    appearance: none;
+    border: 0;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s;
+    margin: 5px;
+    color: var(--text-primary);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn.primary {
+    background: linear-gradient(90deg, var(--primary-color), #ff8a80);
+    color: white;
+    box-shadow: 0 6px 18px rgba(124,92,255,0.24);
+}
+
+.btn.primary:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn.ghost {
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+[data-theme="dark"] .btn.ghost {
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Exercises */
+.exercise {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 4px solid var(--primary-color);
+}
+
+[data-theme="dark"] .exercise {
+    background: #2d2d3a;
+    border-left: 4px solid var(--primary-color);
+}
+
+.exercise-title {
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rule {
+    background: #f0f9ff;
+    border-left: 4px solid var(--primary-color);
+    padding: 10px 15px;
+    margin: 15px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+[data-theme="dark"] .rule {
+    background: #1e3a8a;
+}
+
+.question {
+    margin: 15px 0;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.answer {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 6px;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .answer {
+    background: #252530;
+    border: 1px solid #444455;
+}
+
+.answer.hidden {
+    display: none;
+}
+
+.instructions {
+    margin: 15px 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.example {
+    background: #f0fdf4;
+    border: 1px solid #4ade80;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 6px;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .example {
+    background: #064e3b;
+    border: 1px solid #10b981;
+}
+
+.text {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 6px;
+    line-height: 1.6;
+}
+
+[data-theme="dark"] .text {
+    background: #252530;
+    border: 1px solid #444455;
+}
+
+.text p {
+    margin: 10px 0;
+}
+
+.comprehension {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #e5e7eb;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.back-btn {
+    background: transparent;
+    border: 1px solid #e5e7eb;
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .back-btn {
+    border: 1px solid #444455;
+    color: #f0f0f0;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .card {
+        padding: 24px;
+    }
+    
+    .exercise {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+}

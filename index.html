@@ -1,64 +1,195 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cat Wall Quiz — English Task</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Test - 5th Grade</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
-    <section id="welcome" class="screen active">
-      <div class="card">
-        <h1>Welcome to the Cat Adventure!</h1>
-        <p>Help the cat by choosing the correct English phrases to overcome obstacles.</p>
-        <button id="playBtn" class="btn primary">Play</button>
-      </div>
-    </section>
+    <div class="app">
+        <!-- Главный экран выбора темы -->
+        <section id="welcome" class="screen active">
+            <div class="card">
+                <div class="header-controls">
+                    <h1>English Test - 5th Grade</h1>
+                    <div class="theme-toggle">
+                        <button id="theme-toggle" class="btn ghost">🌓</button>
+                    </div>
+                </div>
+                <p>Select a topic to take the test:</p>
+                <div class="topics">
+                    <div class="topic-item">
+                        <button class="topic-btn" data-topic="starter">Starter</button>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar">
+                                <div class="topic-progress-fill" data-topic="starter"></div>
+                            </div>
+                            <div class="topic-progress-text" data-topic="starter">0%</div>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <button class="topic-btn locked" data-topic="home" disabled>
+                            <span class="lock-icon">🔒</span>
+                            <span class="topic-text">Home & Away!</span>
+                        </button>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar">
+                                <div class="topic-progress-fill" data-topic="home"></div>
+                            </div>
+                            <div class="topic-progress-text" data-topic="home">0%</div>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <button class="topic-btn locked" data-topic="living" disabled>
+                            <span class="lock-icon">🔒</span>
+                            <span class="topic-text">Living things!</span>
+                        </button>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar">
+                                <div class="topic-progress-fill" data-topic="living"></div>
+                            </div>
+                            <div class="topic-progress-text" data-topic="living">0%</div>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <button class="topic-btn locked" data-topic="values" disabled>
+                            <span class="lock-icon">🔒</span>
+                            <span class="topic-text">Values</span>
+                        </button>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar">
+                                <div class="topic-progress-fill" data-topic="values"></div>
+                            </div>
+                            <div class="topic-progress-text" data-topic="values">0%</div>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <button class="topic-btn locked" data-topic="work" disabled>
+                            <span class="lock-icon">🔒</span>
+                            <span class="topic-text">World of Work</span>
+                        </button>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar">
+                                <div class="topic-progress-fill" data-topic="work"></div>
+                            </div>
+                            <div class="topic-progress-text" data-topic="work">0%</div>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <button class="topic-btn locked" data-topic="creativity" disabled>
+                            <span class="lock-icon">🔒</span>
+                            <span class="topic-text">Creativity</span>
+                        </button>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar">
+                                <div class="topic-progress-fill" data-topic="creativity"></div>
+                            </div>
+                            <div class="topic-progress-text" data-topic="creativity">0%</div>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <button class="topic-btn locked" data-topic="reading" disabled>
+                            <span class="lock-icon">🔒</span>
+                            <span class="topic-text">Reading for pleasure</span>
+                        </button>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar">
+                                <div class="topic-progress-fill" data-topic="reading"></div>
+                            </div>
+                            <div class="topic-progress-text" data-topic="reading">0%</div>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <button class="topic-btn locked" data-topic="fantasy" disabled>
+                            <span class="lock-icon">🔒</span>
+                            <span class="topic-text">Fantasy world!</span>
+                        </button>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar">
+                                <div class="topic-progress-fill" data-topic="fantasy"></div>
+                            </div>
+                            <div class="topic-progress-text" data-topic="fantasy">0%</div>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <button class="topic-btn locked" data-topic="sports" disabled>
+                            <span class="lock-icon">🔒</span>
+                            <span class="topic-text">Sports</span>
+                        </button>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar">
+                                <div class="topic-progress-fill" data-topic="sports"></div>
+                            </div>
+                            <div class="topic-progress-text" data-topic="sports">0%</div>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <button class="topic-btn locked" data-topic="holidays" disabled>
+                            <span class="lock-icon">🔒</span>
+                            <span class="topic-text">Holidays</span>
+                        </button>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar">
+                                <div class="topic-progress-fill" data-topic="holidays"></div>
+                            </div>
+                            <div class="topic-progress-text" data-topic="holidays">0%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button id="all-topics-btn" class="btn primary" disabled>All topics in a row</button>
+                    <button id="homework-btn" class="btn ghost">📚 Homework</button>
+                </div>
+            </div>
+        </section>
 
-    <section id="game" class="screen" aria-hidden="true">
-      <div class="card">
-        <div class="scene" id="scene">
-          <div class="char" id="cat">🐱</div>
-          <div class="object" id="object">🧱</div>
-          <div class="goal" id="goal">🏁</div>
-        </div>
+        <!-- Экран теста -->
+        <section id="game" class="screen">
+            <div class="card">
+                <div class="header">
+                    <div class="topic-title" id="topic-title"></div>
+                    <div class="progress">
+                        <span id="question-number">1</span>/<span id="total-questions">15</span>
+                    </div>
+                </div>
+                
+                <div class="question" id="question-text"></div>
+                <div class="choices" id="choices"></div>
+                <div id="result" class="result"></div>
 
-        <div class="question" id="questionText"></div>
-        <div class="choices" id="choices"></div>
-        <div id="result" class="result"></div>
+                <div class="controls">
+                    <button id="next" class="btn primary" hidden>Next</button>
+                    <button id="finish" class="btn ghost">Finish</button>
+                </div>
+            </div>
+        </section>
 
-        <div style="display:flex;gap:10px;justify-content:center;margin-top:12px">
-          <button id="next" class="btn primary" hidden>Next</button>
-          <button id="retry" class="btn" hidden>Try again</button>
-          <button id="finish" class="btn ghost">Finish Game</button>
-          <button id="home" class="btn ghost">Home</button>
-        </div>
-      </div>
-    </section>
+        <!-- Экран результатов -->
+        <section id="stats" class="screen">
+            <div class="card">
+                <h1>Test results</h1>
+                <div class="dino-container">
+                    <img id="dino-image" src="" alt="Dinosaur" class="dino-image">
+                </div>
+                <div id="stats-content"></div>
+                <div class="actions">
+                    <button id="review-wrong" class="btn primary" hidden>View the errors</button>
+                    <button id="back-to-topics" class="btn ghost">Choose another topic</button>
+                </div>
+            </div>
+        </section>
 
-    <section id="stats" class="screen" aria-hidden="true">
-      <div class="card">
-        <h1>Game Results</h1>
-        <div id="stats-content"></div>
-        <div style="margin-top:24px; display:flex; gap:10px; justify-content:center">
-          <button id="review-wrong" class="btn primary" hidden>Review Wrong Answers</button>
-          <button id="stats-home" class="btn ghost">Play Again</button>
-        </div>
-      </div>
-    </section>
+        <!-- Экран обзора ошибок -->
+        <section id="review" class="screen">
+            <div class="card">
+                <h1>Errors in the test</h1>
+                <div id="review-content"></div>
+                <button id="back-to-stats" class="btn ghost">Back to results</button>
+            </div>
+        </section>
+    </div>
 
-    <section id="review" class="screen" aria-hidden="true">
-      <div class="card">
-        <h1>Review Your Mistakes</h1>
-        <div id="review-content"></div>
-        <div style="margin-top:24px">
-          <button id="back-to-stats" class="btn ghost">Back to Results</button>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
