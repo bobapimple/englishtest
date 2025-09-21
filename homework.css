@@ -3,6 +3,7 @@
     --secondary-color: #28c76f;
     --danger-color: #ff6b6b;
     --warning-color: #f59e0b;
+    --success-color: #28c76f;
     --bg-gradient: linear-gradient(135deg, #8ec5ff 0%, #e0c3fc 100%);
     --card-bg: rgba(255,255,255,0.9);
     --text-primary: #1f2937;
@@ -141,74 +142,72 @@ p {
     background: #1e3a8a;
 }
 
-.question {
-    margin: 15px 0;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.answer {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 10px 15px;
-    margin: 10px 0;
-    border-radius: 6px;
-    font-style: italic;
-    color: var(--text-secondary);
-}
-
-[data-theme="dark"] .answer {
-    background: #252530;
-    border: 1px solid #444455;
-}
-
-.answer.hidden {
-    display: none;
-}
-
 .instructions {
     margin: 15px 0;
     font-style: italic;
     color: var(--text-secondary);
 }
 
-.example {
-    background: #f0fdf4;
-    border: 1px solid #4ade80;
-    padding: 10px 15px;
-    margin: 10px 0;
-    border-radius: 6px;
-    font-style: italic;
-    color: var(--text-secondary);
+.question-item {
+    margin: 15px 0;
+    text-align: left;
 }
 
-[data-theme="dark"] .example {
-    background: #064e3b;
-    border: 1px solid #10b981;
-}
-
-.text {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 15px;
-    margin: 20px 0;
-    border-radius: 6px;
+.question {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 5px;
     line-height: 1.6;
 }
 
-[data-theme="dark"] .text {
+.answer-input {
+    padding: 4px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 60px;
+    text-align: center;
+}
+
+.answer-input.long-input {
+    width: 250px;
+}
+
+[data-theme="dark"] .answer-input {
     background: #252530;
     border: 1px solid #444455;
+    color: #f0f0f0;
 }
 
-.text p {
-    margin: 10px 0;
+.result-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-height: 24px;
+    margin-top: 5px;
 }
 
-.comprehension {
+.result-icon {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.result-icon.correct {
+    color: var(--success-color);
+}
+
+.result-icon.incorrect {
+    color: var(--danger-color);
+}
+
+.correct-answer {
+    color: var(--success-color);
+    font-size: 14px;
+    font-style: italic;
+}
+
+.check-btn {
     margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px dashed #e5e7eb;
 }
 
 .actions {
@@ -242,5 +241,14 @@ p {
     
     h1 {
         font-size: 24px;
+    }
+    
+    .answer-input {
+        width: 50px;
+        font-size: 12px;
+    }
+    
+    .answer-input.long-input {
+        width: 180px;
     }
 }
