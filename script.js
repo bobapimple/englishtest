@@ -1157,6 +1157,10 @@ const backToTopicsBtn = document.getElementById('back-to-topics');
 const backToStatsBtn = document.getElementById('back-to-stats');
 const dinoImage = document.getElementById('dino-image');
 const themeToggle = document.getElementById('theme-toggle');
+const loginBtn = document.getElementById('login-btn');
+const logoutBtn = document.getElementById('logout-btn');
+const currentUserEl = document.getElementById('current-user');
+const adminBtn = document.getElementById('admin-btn');
 
 // Добавьте этот код в конец файла script.js перед закрывающей скобкой
 
@@ -1201,6 +1205,22 @@ function saveProgress() {
         topicProgress: topicProgress
     };
     localStorage.setItem('englishTestProgress', JSON.stringify(progress));
+}
+
+// Auth helpers (Firebase)
+function updateAuthUI(user) {
+    if (user) {
+        const displayName = user.displayName || user.email;
+        currentUserEl.textContent = `Hi, ${displayName}`;
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (logoutBtn) logoutBtn.style.display = '';
+        if (adminBtn) adminBtn.style.display = (user.email === 'mysitebotenglishschool@gmail.com') ? '' : 'none';
+    } else {
+        currentUserEl.textContent = '';
+        if (loginBtn) loginBtn.style.display = '';
+        if (logoutBtn) logoutBtn.style.display = 'none';
+        if (adminBtn) adminBtn.style.display = 'none';
+    }
 }
 
 // Обновление индикаторов прогресса по темам
@@ -1521,9 +1541,30 @@ backToTopicsBtn.addEventListener('click', () => {
 backToStatsBtn.addEventListener('click', () => showScreen('stats'));
 themeToggle.addEventListener('click', toggleTheme);
 
+// Auth events
+if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+        window.location.href = 'register/index.html';
+    });
+}
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+        if (window.firebase && firebase.auth) {
+            firebase.auth().signOut().catch(() => {});
+        }
+    });
+}
+
 // Initialize
 loadProgress();
 updateTopicButtons();
+if (window.firebase && firebase.auth) {
+    firebase.auth().onAuthStateChanged(function(user) {
+        updateAuthUI(user);
+    });
+} else {
+    updateAuthUI(null);
+}
 
 // Show initial screen
 showScreen('welcome');

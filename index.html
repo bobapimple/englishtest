@@ -13,8 +13,14 @@
             <div class="card">
                 <div class="header-controls">
                     <h1>English Test - 5th Grade</h1>
-                    <div class="theme-toggle">
-                        <button id="theme-toggle" class="btn ghost">🌓</button>
+                    <div class="user-info">
+                        <span id="current-user"></span>
+                        <button id="login-btn" class="btn ghost">Sign in</button>
+                        <button id="logout-btn" class="btn ghost" style="display:none">Logout</button>
+                        <a id="admin-btn" href="admin/index.html" class="btn ghost" style="display:none">Admin</a>
+                        <div class="theme-toggle">
+                            <button id="theme-toggle" class="btn ghost">🌓</button>
+                        </div>
                     </div>
                 </div>
                 <p>Select a topic to take the test:</p>
@@ -190,6 +196,10 @@
         </section>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

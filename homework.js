@@ -42,6 +42,26 @@ function checkExerciseAnswers(exerciseElement) {
     
     // Показываем общий результат для упражнения
     alert(`Вы набрали ${correctInputs} из ${totalInputs} правильных ответов!`);
+    try {
+        // Save per-exercise result if user is logged in
+        if (window.firebase && firebase.auth && firebase.firestore) {
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const db = firebase.firestore();
+                const payload = {
+                    uid: user.uid,
+                    email: user.email,
+                    displayName: user.displayName || null,
+                    exerciseTitle: exerciseElement.querySelector('.exercise-title span')?.textContent || 'Exercise',
+                    correct: correctInputs,
+                    total: totalInputs,
+                    topic: 'home-and-away',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
+                db.collection('homeworkSubmissions').add(payload).catch(() => {});
+            }
+        }
+    } catch(e) {}
 }
 
 // Добавляем обработчики событий для кнопок проверки
