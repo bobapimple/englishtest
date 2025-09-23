@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .admin-container { max-width: 960px; margin: 40px auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: left; }
+        .muted { color: var(--secondary-text); }
+        .danger { color: #dc2626; }
+        .controls { display:flex; gap:10px; justify-content:flex-end; }
+    </style>
+    <script>
+        // Set your admin email here
+        window.__ADMIN_EMAIL__ = 'mysitebotenglishschool@gmail.com';
+    </script>
+</head>
+<body>
+    <div class="app admin-container">
+        <section class="screen active">
+            <div class="card">
+                <div class="header-controls">
+                    <h1>Admin Dashboard</h1>
+                    <div class="controls">
+                        <button id="logout" class="btn ghost">Logout</button>
+                        <a href="../index.html" class="btn ghost">Home</a>
+                    </div>
+                </div>
+                <p class="muted">View homework submissions by all users.</p>
+                <div id="auth-warning" class="message error" style="display:none"></div>
+                <div id="content" style="display:none">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Name</th>
+                                <th>Exercise</th>
+                                <th>Score</th>
+                                <th>Topic</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rows"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
+    <script src="../firebase-config.js"></script>
+    <script>
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        function renderRow(doc) {
+            const data = doc.data();
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${data.email || ''}</td>
+                <td>${data.displayName || ''}</td>
+                <td>${data.exerciseTitle || ''}</td>
+                <td>${data.correct}/${data.total}</td>
+                <td>${data.topic || ''}</td>
+                <td>${data.createdAt?.toDate ? data.createdAt.toDate().toLocaleString() : ''}</td>
+            `;
+            return tr;
+        }
+
+        auth.onAuthStateChanged(user => {
+            const warning = document.getElementById('auth-warning');
+            const content = document.getElementById('content');
+            const rows = document.getElementById('rows');
+            if (!user) {
+                warning.style.display = 'block';
+                warning.textContent = 'Please sign in as admin to view this page.';
+                content.style.display = 'none';
+                return;
+            }
+            if (user.email !== window.__ADMIN_EMAIL__) {
+                warning.style.display = 'block';
+                warning.textContent = 'Access denied. You are not an admin.';
+                content.style.display = 'none';
+                return;
+            }
+            warning.style.display = 'none';
+            content.style.display = 'block';
+
+            db.collection('homeworkSubmissions').orderBy('createdAt', 'desc').limit(200)
+                .onSnapshot(snapshot => {
+                    rows.innerHTML = '';
+                    snapshot.forEach(doc => rows.appendChild(renderRow(doc)));
+                });
+        });
+
+        document.getElementById('logout').addEventListener('click', () => auth.signOut());
+    </script>
+</body>
+</html>
+

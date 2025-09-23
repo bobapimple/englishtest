@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In / Register</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .auth-container { max-width: 420px; margin: 40px auto; }
+        .tab-switch { display: flex; gap: 10px; justify-content: center; margin-bottom: 16px; }
+        .tab-switch .btn { flex: 1; }
+        form { text-align: left; }
+        .muted { color: var(--secondary-text); font-size: 14px; text-align: center; }
+        a { color: var(--accent); text-decoration: none; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="app auth-container">
+        <section class="screen active">
+            <div class="card">
+                <h1>Welcome</h1>
+                <p class="muted">Sign in to continue or create a new account</p>
+
+                <div class="tab-switch">
+                    <button id="show-login" class="btn ghost">Sign In</button>
+                    <button id="show-register" class="btn primary">Register</button>
+                </div>
+
+                <div id="message" class="message" style="display:none"></div>
+
+                <form id="login-form" class="hidden">
+                    <input type="email" id="login-email" placeholder="Email" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button type="submit" class="btn primary" style="width:100%">Sign In</button>
+                </form>
+
+                <form id="register-form">
+                    <input type="text" id="register-name" placeholder="Name" required>
+                    <input type="email" id="register-email" placeholder="Email" required>
+                    <input type="password" id="register-password" placeholder="Password" minlength="6" required>
+                    <button type="submit" class="btn primary" style="width:100%">Create Account</button>
+                </form>
+
+                <div class="muted" style="margin-top:12px">
+                    <a href="../index.html">← Back to Home</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
+    <script src="../firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Tab toggle
+        const showLoginBtn = document.getElementById('show-login');
+        const showRegisterBtn = document.getElementById('show-register');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        function showLogin() {
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+            showLoginBtn.classList.add('primary');
+            showLoginBtn.classList.remove('ghost');
+            showRegisterBtn.classList.add('ghost');
+            showRegisterBtn.classList.remove('primary');
+        }
+
+        function showRegister() {
+            registerForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+            showRegisterBtn.classList.add('primary');
+            showRegisterBtn.classList.remove('ghost');
+            showLoginBtn.classList.add('ghost');
+            showLoginBtn.classList.remove('primary');
+        }
+
+        showLoginBtn.addEventListener('click', showLogin);
+        showRegisterBtn.addEventListener('click', showRegister);
+
+        // Default state
+        showRegister();
+    </script>
+</body>
+<!-- Keep same indentation style as project (4 spaces) -->
+</html>
+
